@@ -31,7 +31,7 @@ header {
             background-color: white;
             border: 1px gray solid;
             display: flex;
-            width: 400px;
+            width: 70%;
             padding: 10px;
 
             input[type=search] {
@@ -39,6 +39,10 @@ header {
                 border: none!important;
                 padding: 5px;
                 font-size: 18px;
+
+                &:focus {
+                    outline: none;
+                }
             }
             
             button {
@@ -60,6 +64,11 @@ header {
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
+
+    .emptySearch {
+        margin-top: 30px;
+        font-size: 28px;
+    }
 
     .recette {
         border: black 1px solid;
