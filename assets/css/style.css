@@ -52,3 +52,18 @@ header {
         }
     }
 }
+
+.listeRecette {
+    display: flex;
+    flex-direction: column;
+
+    .recette {
+        border: black 1px solid;
+
+        img {
+            width: 250px;
+            height: 175px;
+            object-fit: cover;
+        }
+    }
+}
