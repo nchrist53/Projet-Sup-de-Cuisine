@@ -19,22 +19,27 @@
             </div>
         </header>
         <main>
-            <div class="filtersContainer">
-                <div class="filters">
-                    <div class="filterDropDownList" id="ingredientFilter" onclick="toggleArrow('One')">
-                        <label>Ingrédients</label><i class="arrow arrow-down arrowOne fa-solid fa-chevron-down"></i>
-                        <div class="filterList d-none"><script>getNomsIngredients()</script></div>
+            <div class="main-top">
+                <div class="filtersContainer">
+                    <div class="filters">
+                        <div class="filterDropDownList" id="ingredientFilter">
+                            <div class="filterLabel" onclick="toggleArrow('One')"><label>Ingrédients</label><i class="arrow arrow-down arrowOne fa-solid fa-chevron-down"></i></div>
+                            <div class="filterList d-none"><input type="search" name="searchIngredient" id="searchIngredient" placeholder="Recherchez un ingrédient"/><script>getNomsIngredients()</script></div>
+                        </div>
+                        <div class="filterDropDownList" id="appareilFilter">
+                            <div class="filterLabel" onclick="toggleArrow('Two')"><label>Appareils</label><i class="arrow arrow-down arrowTwo fa-solid fa-chevron-down"></i></div>
+                            <div class="filterList d-none"></div>
+                        </div>
+                        <div class="filterDropDownList" id="ustensileFilter">
+                            <div class="filterLabel" onclick="toggleArrow('Three')"><label>Ustensiles</label><i class="arrow arrow-down arrowThree fa-solid fa-chevron-down"></i></div>
+                            <div class="filterList d-none"></div>
+                        </div>
                     </div>
-                    <div class="filterDropDownList" id="appareilFilter" onclick="toggleArrow('Two')">
-                        <label>Appareils</label><i class="arrow arrow-down arrowTwo fa-solid fa-chevron-down"></i>
-                        <div class="filterList d-none"></div>
-                    </div>
-                    <div class="filterDropDownList" id="ustensileFilter" onclick="toggleArrow('Three')">
-                        <label>Ustensiles</label><i class="arrow arrow-down arrowThree fa-solid fa-chevron-down"></i>
-                        <div class="filterList d-none"></div>
-                    </div>
+                    <div class="selectedFilters"></div>
                 </div>
-                <div class="selectedFilters"></div>
+                <div class="recetteCount">
+                    <p id="nombreRecettes">0 recettes</p>
+                </div>
             </div>
             <div class="listeRecette">
                 <script>getRecettes()</script>

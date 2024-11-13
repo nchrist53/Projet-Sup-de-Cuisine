@@ -1,5 +1,12 @@
 const recipesJSON = 'https://gist.githubusercontent.com/baiello/0a974b9c1ec73d7d0ed7c8abc361fc8e/raw/e598efa6ef42d34cc8d7e35da5afab795941e53e/recipes.json'
 
+function updateNombreRecette(){
+    const listeRecette = document.querySelector('.listeRecette')
+    const nombreRecette = document.getElementById('nombreRecettes')
+    
+    nombreRecette.innerHTML = listeRecette.querySelectorAll('.recette').length + " recettes";
+}
+
 function tousLesIngredients(recette){
     var listeIngredients = "<div class='listeIngredients'>";
     recette.ingredients.forEach(ingredient => {
@@ -42,7 +49,8 @@ function tousLesNomsIngredients() {
 }
 
 function getRecettes(filter = '') {
-    var listeRecette = document.querySelector('.listeRecette')
+    const listeRecette = document.querySelector('.listeRecette')
+    
     fetch(recipesJSON)
         .then(response => {
             if (!response.ok) {
@@ -67,7 +75,7 @@ function getRecettes(filter = '') {
                     "<div class='recetteInfos'><h2>" + recette.name + "</h2>" +
 
                     "<h3>Recette</h3>" +
-                    "<p>" + recette.description + "</p>" +
+                    "<p style='overflow: auto; height: 100px'>" + recette.description + "</p>" +
 
                     "<h3>Ingrédients</h3>" +
                     tousLesIngredients(recette) +
@@ -78,6 +86,7 @@ function getRecettes(filter = '') {
             if (!listeRecette.innerHTML) {
                 listeRecette.innerHTML = "<h2 class='emptySearch'>Aucune recette ne contient '"+ filter +"'</h2>";
             }
+            updateNombreRecette();
         })
         .catch(error => {
             console.error('Erreur:', error);
