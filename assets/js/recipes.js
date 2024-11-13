@@ -1,3 +1,5 @@
+const recipesJSON = 'https://gist.githubusercontent.com/baiello/0a974b9c1ec73d7d0ed7c8abc361fc8e/raw/e598efa6ef42d34cc8d7e35da5afab795941e53e/recipes.json'
+
 function tousLesIngredients(recette){
     var listeIngredients = "<div class='listeIngredients'>";
     recette.ingredients.forEach(ingredient => {
@@ -14,33 +16,53 @@ function tousLesIngredients(recette){
     return listeIngredients + "</div>"
 }
 
-function tousLesNomsIngredients(recette) {
-    var noms = ''
-    recette.ingredients.forEach(ingredient => {
-        noms += ingredient.ingredient + ' | ';
+function tousLesNomsIngredients() {
+    return new Promise((resolve, reject) => {
+        var noms = [];
+        fetch(recipesJSON)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur de réseau');
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(recette => {
+                    recette.ingredients.forEach(ingredient => {
+                        noms.push(ingredient.ingredient);
+                    });
+                });
+                resolve(noms);  // Résoudre la promesse avec le tableau des noms
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                reject(error);  // Rejeter la promesse en cas d'erreur
+            });
     });
-    console.log(noms);
-    return noms;
 }
 
-var listeRecette = document.querySelector('.listeRecette')
-
-function getRecettes(filter) {
-    fetch('/assets/json/recipes.json')
+function getRecettes(filter = '') {
+    var listeRecette = document.querySelector('.listeRecette')
+    fetch(recipesJSON)
         .then(response => {
             if (!response.ok) {
             throw new Error('Erreur de réseau');
             }
             return response.json();
         })
-        .then(data => {
+        .then(async data => {
             listeRecette.innerHTML = '';
+            const listeNoms = await tousLesNomsIngredients();
             data.forEach(recette => {
                 // console.log(recette);
-                if ((recette.name.toLowerCase().includes(filter)) || (recette.description.toLowerCase().includes(filter)) || tousLesNomsIngredients(recette).toLowerCase().includes(filter))  {
+                listeNomIngredients = ''
+                listeNoms.forEach(ingredient => {
+                    listeNomIngredients += ingredient + ' | ';
+                })
+                if ((recette.name.toLowerCase().includes(filter)) || (recette.description.toLowerCase().includes(filter)) || listeNomIngredients.toLowerCase().includes(filter))  {
                     listeRecette.innerHTML += "<div class='recette'>" +
                 
-                    "<img src='/assets/images/" + recette.image + "'/>" +
+                    "<img src='/assets/images/" + recette.image.replace('jpg', 'webp') + "'/>" +
 
                     "<div class='recetteInfos'><h2>" + recette.name + "</h2>" +
 
@@ -61,5 +83,3 @@ function getRecettes(filter) {
             console.error('Erreur:', error);
         });
 }
-
-getRecettes('');

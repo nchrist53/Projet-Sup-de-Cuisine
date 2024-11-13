@@ -4,6 +4,9 @@
         <link rel="icon" href="/assets/images/icons/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
         <link rel="stylesheet" href="/assets/css/style.css"/>
+        <script src="/assets/js/index.js"></script>
+        <script src="/assets/js/recipes.js"></script>
+        <script src="/assets/js/filters.js"></script>
     </head>
     <body>
         <header>
@@ -12,19 +15,31 @@
                 <div class="searchBar">
                     <input type="search" name="search" id="search" placeholder="Recherchez une recette, un ingrédient, ..."/>
                     <button id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <script src="/assets/js/search.js"></script>
                 </div>
             </div>
         </header>
         <main>
-            <!-- <div class="filters">
-                <select class="filterSelect" name="ingredients" id="ingredient-select">
-                    <option value="">Tous</option>
-                </select>
-            </div> -->
+            <div class="filtersContainer">
+                <div class="filters">
+                    <div class="filterDropDownList" id="ingredientFilter" onclick="toggleArrow('One')">
+                        <label>Ingrédients</label><i class="arrow arrow-down arrowOne fa-solid fa-chevron-down"></i>
+                        <div class="filterList d-none"><script>getNomsIngredients()</script></div>
+                    </div>
+                    <div class="filterDropDownList" id="appareilFilter" onclick="toggleArrow('Two')">
+                        <label>Appareils</label><i class="arrow arrow-down arrowTwo fa-solid fa-chevron-down"></i>
+                        <div class="filterList d-none"></div>
+                    </div>
+                    <div class="filterDropDownList" id="ustensileFilter" onclick="toggleArrow('Three')">
+                        <label>Ustensiles</label><i class="arrow arrow-down arrowThree fa-solid fa-chevron-down"></i>
+                        <div class="filterList d-none"></div>
+                    </div>
+                </div>
+                <div class="selectedFilters"></div>
+            </div>
             <div class="listeRecette">
-                <script src="/assets/js/recipes.js"></script>
+                <script>getRecettes()</script>
             </div>
         </main>
+        <script src="/assets/js/search.js"></script>
     </body>
 </html>
