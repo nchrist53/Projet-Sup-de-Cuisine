@@ -176,7 +176,7 @@ function getRecettes(filter = '') {
                         // Définition de la carte pour afficher la recette
                         recettes += "<div class='recette'>" +
                     
-                        "<img src='/assets/images/" + recette.image.replace('jpg', 'webp') + "'/>" +
+                        "<img src='assets/images/" + recette.image.replace('jpg', 'webp') + "'/>" +
 
                         "<div class='recetteInfos'><h2>" + recette.name + "</h2>" +
 
