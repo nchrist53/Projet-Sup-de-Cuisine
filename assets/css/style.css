@@ -142,12 +142,11 @@ main {
         width: 100%;
         justify-content: space-between;
         align-items: baseline;
+        margin: 20px 30px 0 30px;
     
         .filters {
             display: flex;
             flex-direction: row;
-            margin-top: 20px;
-            margin-left: 30px;
     
             .filterDropDownList {
                 position: relative; /* Permet de définir la base de positionnement pour .filterList */
@@ -168,7 +167,7 @@ main {
                 .filterList {
                     position: absolute; /* Fait "flotter" la liste par-dessus le reste du contenu */
                     top: 30px; /* Positionne la liste juste en dessous du label */
-                    left: -1px;
+                    left: -0.5px;
                     z-index: 10; /* Place la liste au-dessus des autres éléments */
                     width: calc(100% - 10px);
                     height: 150px; 
@@ -187,7 +186,7 @@ main {
                         }
     
                         p:hover {
-                            background-color: red;
+                            background-color: #ffdc64;;
                             cursor: pointer;
                         }
                     }
@@ -205,7 +204,7 @@ main {
         }
 
         .recetteCount {
-            margin-right: 30px;
+            margin-right: 60px;
         }
     }
 
@@ -213,7 +212,34 @@ main {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        margin: 0 30px 0 30px;
 
+        .filterBox {
+            background-color: #ffdc64;
+            width: 150px;
+            height: 80px;
+            padding: 0 20px 0 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 20px 10px 20px;
+
+            .closeFilterButton {
+                background-color: transparent;
+                border: none;
+                color: black;
+                cursor: pointer;
+
+                i  {
+                    font-size: 30px;
+                }
+            }
+                
+            .closeFilterButton:hover {
+                color: red;
+            }
+        }
     }
 }
 
