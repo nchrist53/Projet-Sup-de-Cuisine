@@ -10,7 +10,7 @@ header {
     height: 450px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background-image: url("assets/images/header_background.jpg");
+    background-image: url("../images/header_background.jpg");
 
     .header_overlay {
         width: 100%;
