@@ -9,7 +9,11 @@ function updateNombreRecette(){
     const nombreRecette = document.getElementById('nombreRecettes')
     
     // Met à jour l'élément avec le nombre de recettes dans la liste
-    nombreRecette.innerHTML = listeRecette.querySelectorAll('.recette').length + " recettes";
+    if (listeRecette.querySelectorAll('.recette').length == 1) {
+        nombreRecette.innerHTML = listeRecette.querySelectorAll('.recette').length + " recette";
+    } else {
+        nombreRecette.innerHTML = listeRecette.querySelectorAll('.recette').length + " recettes";
+    }
 }
 
 // Fonction pour obtenir tous les ingrédients d'une recette et les formater en HTML
