@@ -209,3 +209,8 @@ function getRecettes(filter = '') {
             console.error('Erreur:', error);
         });
 }
+
+// Export conditionnel uniquement pour les tests
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = { updateNombreRecette, tousLesIngredients, tousLesNomsIngredients, tousLesNomsAppareils, tousLesNomsUstensiles };
+}

@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "@vitest/coverage-v8": "^2.1.5",
+    "jsdom": "^25.0.1",
+    "node-fetch": "^3.3.2",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.5",
+    "whatwg-fetch": "^3.6.20"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest --coverage --environment=jsdom"
+  }
+}
