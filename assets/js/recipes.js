@@ -48,6 +48,54 @@ function tousLesNomsIngredients() {
     });
 }
 
+function tousLesNomsAppareils() {
+    return new Promise((resolve, reject) => {
+        var noms = [];
+        fetch(recipesJSON)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur de réseau');
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(recette => {
+                    noms.push(recette.appliance);
+                });
+                resolve(noms);  // Résoudre la promesse avec le tableau des noms
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                reject(error);  // Rejeter la promesse en cas d'erreur
+            });
+    });
+}
+
+function tousLesNomsUstensiles() {
+    return new Promise((resolve, reject) => {
+        var noms = [];
+        fetch(recipesJSON)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur de réseau');
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(recette => {
+                    recette.ustensils.forEach(ustensil => {
+                        noms.push(ustensil);
+                    });
+                });
+                resolve(noms);  // Résoudre la promesse avec le tableau des noms
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                reject(error);  // Rejeter la promesse en cas d'erreur
+            });
+    });
+}
+
 function getRecettes(filter = '') {
     const listeRecette = document.querySelector('.listeRecette')
     
@@ -59,16 +107,16 @@ function getRecettes(filter = '') {
             return response.json();
         })
         .then(async data => {
-            listeRecette.innerHTML = '';
-            const listeNoms = await tousLesNomsIngredients();
+            recettes = '';
+            console.log(data);
             data.forEach(recette => {
-                // console.log(recette);
-                listeNomIngredients = ''
-                listeNoms.forEach(ingredient => {
+                ingredientsListe = recette.ingredients;
+                listeNomIngredients = '';
+                ingredientsListe.forEach(ingredient => {
                     listeNomIngredients += ingredient + ' | ';
                 })
                 if ((recette.name.toLowerCase().includes(filter)) || (recette.description.toLowerCase().includes(filter)) || listeNomIngredients.toLowerCase().includes(filter))  {
-                    listeRecette.innerHTML += "<div class='recette'>" +
+                    recettes += "<div class='recette'>" +
                 
                     "<img src='/assets/images/" + recette.image.replace('jpg', 'webp') + "'/>" +
 
@@ -83,8 +131,11 @@ function getRecettes(filter = '') {
                     "</div></div>";
                 }
             });
-            if (!listeRecette.innerHTML) {
-                listeRecette.innerHTML = "<h2 class='emptySearch'>Aucune recette ne contient '"+ filter +"'</h2>";
+            if (recettes != listeRecette.innerHTML) {
+                listeRecette.innerHTML = recettes;
+                if (!listeRecette.innerHTML) {
+                    listeRecette.innerHTML = "<h2 class='emptySearch'>Aucune recette ne contient '"+ filter +"'</h2>";
+                }
             }
             updateNombreRecette();
         })

@@ -7,6 +7,10 @@ function convertirSingulier(mot) {
     return mot;  // Si ce n'est pas un pluriel standard, on retourne le mot tel quel
 }
 
+function premiereLettreEnMajuscule(chaine) {
+    return chaine.charAt(0).toUpperCase() + chaine.slice(1);
+  }
+
 function supprimerDoublons(arr) {
     // Créer un ensemble (Set) avec les éléments normalisés (en minuscules et convertis en singulier)
     const uniqueItems = new Set(arr.map(item => convertirSingulier(item.toLowerCase())));

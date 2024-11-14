@@ -130,29 +130,90 @@ main {
     padding: 20px;
 }
 
-.filtersContainer {
+.main-top {
     display: flex;
-    flex-direction: row;
+    align-items: baseline;
+    width: 100%;
+    flex-direction: column;
 
-    .filters {
+    .filtersContainer {
         display: flex;
         flex-direction: row;
-        margin-top: 20px;
-        margin-left: 30px;
-
-        .filterDropDownList {
-            height: fit-content;
-            border: 1px black solid;
-            border-radius: 5px;
-            margin-right: 30px;
-            width: 200px;
-            padding: 5px 5px 0 5px;
-            transition: width 0.3s ease;
-
-            .filterLabel {
-                padding-bottom: 5px;
+        width: 100%;
+        justify-content: space-between;
+        align-items: baseline;
+    
+        .filters {
+            display: flex;
+            flex-direction: row;
+            margin-top: 20px;
+            margin-left: 30px;
+    
+            .filterDropDownList {
+                position: relative; /* Permet de définir la base de positionnement pour .filterList */
+                height: fit-content;
+                border: 1px black solid;
+                border-radius: 5px;
+                margin-right: 30px;
+                width: 250px;
+                padding: 5px 5px 0 5px;
+                transition: width 0.3s ease;
+    
+                .filterLabel {
+                    padding-bottom: 5px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+                
+                .filterList {
+                    position: absolute; /* Fait "flotter" la liste par-dessus le reste du contenu */
+                    top: 30px; /* Positionne la liste juste en dessous du label */
+                    left: -1px;
+                    z-index: 10; /* Place la liste au-dessus des autres éléments */
+                    width: calc(100% - 10px);
+                    height: 150px; 
+                    background-color: white; /* Fond blanc pour une meilleure lisibilité */
+                    border: 1px solid black; /* Bordure pour un contour visible */
+                    border-top: none;
+                    border-radius: 5px;
+                    padding: 5px;
+    
+                    .theList {
+                        overflow-y: auto;
+                        overflow-x: hidden;
+    
+                        p {
+                            user-select: none;
+                        }
+    
+                        p:hover {
+                            background-color: red;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+    
+            .filterDropDownList.active {
+                border-bottom: none;
+                border-radius: 5px 5px 0 0;
+    
+                .filterList {
+                    border-radius: 0 0 5px 5px;
+                }
             }
         }
+
+        .recetteCount {
+            margin-right: 30px;
+        }
+    }
+
+    .selectedFilters {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
     }
 }
 
@@ -172,13 +233,6 @@ main {
     transform: rotate(180deg);
 }
 
-.filterList {
-    height: fit-content;
-    width: 100%;
-    height: 150px; 
-    overflow: auto;
-}
-
 .d-none {
     display: none;
 }
@@ -190,15 +244,4 @@ main {
 .d-flex-column {
     display: flex;
     flex-direction: column;
-}
-
-.main-top {
-    display: flex;
-    align-items: baseline;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.recetteCount {
-    margin-right: 30px;
 }

@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <title>Sup de Cuisine</title>
         <link rel="icon" href="/assets/images/icons/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
         <link rel="stylesheet" href="/assets/css/style.css"/>
         <script src="/assets/js/index.js"></script>
         <script src="/assets/js/recipes.js"></script>
-        <script src="/assets/js/filters.js"></script>
     </head>
     <body>
         <header>
@@ -24,27 +24,28 @@
                     <div class="filters">
                         <div class="filterDropDownList" id="ingredientFilter">
                             <div class="filterLabel" onclick="toggleArrow('One')"><label>Ingrédients</label><i class="arrow arrow-down arrowOne fa-solid fa-chevron-down"></i></div>
-                            <div class="filterList d-none"><input type="search" name="searchIngredient" id="searchIngredient" placeholder="Recherchez un ingrédient"/><script>getNomsIngredients()</script></div>
+                            <div class="filterList d-none"><input type="search" name="searchIngredient" id="searchIngredient" placeholder="Recherchez un ingrédient"/><div class="theList"></div></div>
                         </div>
                         <div class="filterDropDownList" id="appareilFilter">
                             <div class="filterLabel" onclick="toggleArrow('Two')"><label>Appareils</label><i class="arrow arrow-down arrowTwo fa-solid fa-chevron-down"></i></div>
-                            <div class="filterList d-none"></div>
+                            <div class="filterList d-none"><input type="search" name="searchAppareil" id="searchAppareil" placeholder="Recherchez un Appareil"/><div class="theList"></div></div>
                         </div>
                         <div class="filterDropDownList" id="ustensileFilter">
                             <div class="filterLabel" onclick="toggleArrow('Three')"><label>Ustensiles</label><i class="arrow arrow-down arrowThree fa-solid fa-chevron-down"></i></div>
-                            <div class="filterList d-none"></div>
+                            <div class="filterList d-none"><input type="search" name="searchUstensile" id="searchUstensile" placeholder="Recherchez un Ustensile"/><div class="theList"></div></div>
                         </div>
                     </div>
-                    <div class="selectedFilters"></div>
+                    <div class="recetteCount">
+                        <p id="nombreRecettes">0 recettes</p>
+                    </div>
                 </div>
-                <div class="recetteCount">
-                    <p id="nombreRecettes">0 recettes</p>
-                </div>
+                <div class="selectedFilters"></div>
             </div>
             <div class="listeRecette">
                 <script>getRecettes()</script>
             </div>
         </main>
         <script src="/assets/js/search.js"></script>
+        <script src="/assets/js/filters.js"></script>
     </body>
 </html>
